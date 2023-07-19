@@ -15,6 +15,10 @@ app.get("/", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+app.post("/create", (req, res) => {
+  UserModel.create(req.body).then((user) => res.json(user));
+});
+
 app.listen(8000, () => {
   console.log("Server is Running at 8000");
 });
