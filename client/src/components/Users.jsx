@@ -1,11 +1,17 @@
 import { useEffect } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../redux/userSlice";
 
 export default function Users() {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users.users);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("");
+        const response = await axios.get("http://127.0.0.1:8000");
+        dispatch(getUser(response));
       } catch (err) {
         console.log(err);
       }
@@ -27,7 +33,19 @@ export default function Users() {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.email}</td>
+                <td>
+                  <button className="btn btn-warning">Edit</button>
+                  <button className="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
