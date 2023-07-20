@@ -20,9 +20,8 @@ export default function Create() {
       .then((res) => {
         dispatch(addUser(res.data));
         console.log(res.data);
+        navigate("/");
       });
-
-    navigate("/");
   };
 
   return (

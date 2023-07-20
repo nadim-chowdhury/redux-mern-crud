@@ -27,7 +27,10 @@ export default function Users() {
                 <td>{user.email}</td>
                 <td>{user.age}</td>
                 <td>
-                  <Link to="/update" className="btn btn-sm btn-warning me-2">
+                  <Link
+                    to={`/update/${user.id}`}
+                    className="btn btn-sm btn-warning me-2"
+                  >
                     Edit
                   </Link>
                   <button className="btn btn-sm btn-danger">Delete</button>
