@@ -40,6 +40,15 @@ app.put("/update/:id", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+// This is DELETE Route
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+
+  UserModel.findByIdAndDelete({ _id: id })
+    .then((response) => res.json(response))
+    .catch((err) => res.json(err));
+});
+
 app.listen(8000, () => {
   console.log("Server is Running at 8000");
 });

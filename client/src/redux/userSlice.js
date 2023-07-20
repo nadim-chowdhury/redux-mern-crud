@@ -23,14 +23,20 @@ const userSlice = createSlice({
 
     updateUser: (state, action) => {
       const index = state.users.findIndex((x) => x.id === action.payload.id);
-      state.users[index] = [
-        action.payload.name,
-        action.payload.email,
-        action.payload.age,
-      ];
+      state.users[index] = {
+        id: action.payload.id,
+        name: action.payload.name,
+        email: action.payload.email,
+        age: action.payload.age,
+      };
+    },
+
+    deleteUser: (state, action) => {
+      const id = action.payload.id;
+      state.users = state.users.filter((u) => u.id !== id);
     },
   },
 });
 
-export const { getUser, addUser, updateUser } = userSlice.actions;
+export const { getUser, addUser, updateUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;

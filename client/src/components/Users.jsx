@@ -1,8 +1,19 @@
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteUser } from "../redux/userSlice";
 
 export default function Users() {
   const users = useSelector((state) => state.users.users);
+
+  const dispatch = useDispatch();
+
+  const handleDelete = (id) => {
+    axios.delete(`http://127.0.0.1:8000/delete/${id}`).then((res) => {
+      dispatch(deleteUser({ id }));
+      console.log(res);
+    });
+  };
 
   return (
     <div className="d-flex vh-100 justify-content-center align-items-center">
@@ -33,7 +44,12 @@ export default function Users() {
                   >
                     Edit
                   </Link>
-                  <button className="btn btn-sm btn-danger">Delete</button>
+                  <button
+                    onClick={() => handleDelete(user.id)}
+                    className="btn btn-sm btn-danger"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
