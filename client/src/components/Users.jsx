@@ -22,12 +22,12 @@ export default function Users() {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user._id}>
+              <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.email}</td>
+                <td>{user.age}</td>
                 <td>
-                  <Link to="/update" className="btn btn-sm btn-warning">
+                  <Link to="/update" className="btn btn-sm btn-warning me-2">
                     Edit
                   </Link>
                   <button className="btn btn-sm btn-danger">Delete</button>
